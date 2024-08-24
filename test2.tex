@@ -1,0 +1,71 @@
+\documentclass{ltjsarticle}
+\usepackage{luacas}
+
+\begin{document}
+wao
+
+\begin{CAS}
+    vars('x')
+    f = x^2 + 3*x + 2
+\end{CAS}
+\[ f(x)=\print{f} \]
+
+
+\begin{CAS}
+	vars('x')
+	f = (1 - x + 0*x)*(1 + 1*x)
+\end{CAS}
+\[　\print{f}=\print{f:autosimplify()} = \print{f:simplify()}　\]
+
+
+
+\begin{CAS}
+    vars('x')
+	f = (x + 1)^2*(x - 3) + (2*x^3 + 5*x + 1)
+\end{CAS}
+\[ \print{f}=\print{f:expand()} \]
+
+
+
+
+\begin{CAS}
+vars('x')
+f = x^3-3+2*x+x^2
+f,b = f:autosimplify():topolynomial()
+if b then
+tex.print("\\[",f:tolatex(),"\\]")
+else
+tex.print("womp womp")
+end
+\end{CAS}
+
+----aaaa
+
+
+\begin{CAS}
+ vars('x')
+ a = Integer(-5)
+ p = Integer(-2)
+ q = Integer(2)
+ sa = a * x^2 -2 * a * p * x + a * p^2 + q
+ sa = topoly(sa:expand())
+ sb = -2*p*x
+ sb = sb:expand()
+ sb = x^2 + sb
+ sbc = a * p^2 + q
+ sb = a * sb + sbc
+ sc = -1 * p
+ sc = sc:expand()
+ sc = x + sc
+ sc = a * (sc^2-p^2) +sbc
+\end{CAS}
+\[
+ y = \print{sa}
+\]
+\[
+ y = \print{sb}
+\]
+\[
+ y = \print{sc}
+\]
+\end{document}
